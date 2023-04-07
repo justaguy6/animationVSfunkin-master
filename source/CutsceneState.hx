@@ -30,7 +30,7 @@ class CutsceneState extends MusicBeatState
 	{
 		if (FlxG.keys.justPressed.ENTER)
 		{
-			handler.kill();
+			video.kill(); // provavelmente vai dar erro mas tá 
 			MusicBeatState.switchState(new PlayState());
 		}
 		super.update(elapsed);
