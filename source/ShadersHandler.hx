@@ -10,8 +10,8 @@ class ShadersHandler
 	public static function setChrome(chromeOffset:Float):Void
 	{
 		chromeoffsetthing = chromeOffset;
-		chromaticAberration.shader.data.rOffset.value = [chromeOffset];
-		chromaticAberration.shader.data.gOffset.value = [0.0];
-		chromaticAberration.shader.data.bOffset.value = [chromeOffset * -1];
+		chromaticAberration.shader.rOffset.value = [chromeOffset];
+		chromaticAberration.shader.gOffset.value = [0.0];
+		chromaticAberration.shader.bOffset.value = [chromeOffset * -1];
 	}
 }
