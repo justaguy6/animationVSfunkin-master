@@ -11,7 +11,15 @@ import lime.app.Application;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
-
+#if VIDEOS_ALLOWED
+#if (hxCodec >= "2.6.1") 
+import hxcodec.VideoHandler as MP4Handler;
+#elseif (hxCodec == "2.6.0") 
+import VideoHandler as MP4Handler;
+#else 
+import vlc.MP4Handler;
+#end
+#end
 class WarningState extends MusicBeatState
 {
 	public static var leftState:Bool = false;
