@@ -1010,7 +1010,7 @@ class PlayState extends MusicBeatState
 					animatedbg.screenCenter();
 				} else {
 					var video:MP4Handler = new MP4Handler();
-					video.playMP4(Paths.video('animatedbg'), null, animatedbg);
+					video.playVideo(Paths.video('animatedbg'), null, animatedbg);
 				}
 				
 				add(animatedbg);
@@ -1055,7 +1055,7 @@ class PlayState extends MusicBeatState
 					fallenbg.screenCenter();
 				} else {
 					var video:MP4Handler = new MP4Handler();
-					video.playMP4(Paths.video('fallingbg'), null, fallenbg);
+					video.playVideo(Paths.video('fallingbg'), null, fallenbg);
 				}
 				
 				add(fallenbg);
@@ -1963,7 +1963,7 @@ class PlayState extends MusicBeatState
    {
 	   
 	   var video:MP4Handler = new MP4Handler();
-	   video.playMP4(Asset2File.getPath(Paths.video(name)));
+	   video.playVideo(Asset2File.getPath(Paths.video(name)));
 	   video.finishCallback = function()
 	   {
 		   LoadingState.loadAndSwitchState(new PlayState());
