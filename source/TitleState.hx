@@ -88,7 +88,7 @@ class TitleState extends MusicBeatState
 		save.flush();
 		FlxG.log.add("Settings saved!");
 		#if sys
-		if (!sys.FileSystem.exists("assets/dud.png")) {
+		if (!Assets.exists("assets/dud.png")) {
 			var save:FlxSave = new FlxSave();
 			save.bind('avfnf', 'ninjamuffin99');
 			save.data.dud = true;
@@ -109,7 +109,7 @@ class TitleState extends MusicBeatState
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 		
-		#if MODS_ALLOWED
+		#if desktop 
 		// Just to load a mod on start up if ya got one. For mods that change the menu music and bg
 		if (FileSystem.exists("modsList.txt")){
 			
