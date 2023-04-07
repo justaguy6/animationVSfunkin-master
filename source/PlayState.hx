@@ -1009,8 +1009,8 @@ class PlayState extends MusicBeatState
 					animatedbg.scale.set(1.5, 1.5);
 					animatedbg.screenCenter();
 				} else {
-					var video:MP4Handler = new MP4Handler();
-					video.playVideo(Paths.video('animatedbg'), null, animatedbg);
+					/*var video:MP4Handler = new MP4Handler();
+					video.playVideo(Paths.video('animatedbg'), null, animatedbg);*/
 				}
 				
 				add(animatedbg);
@@ -1054,8 +1054,8 @@ class PlayState extends MusicBeatState
 					fallenbg.scale.set(1.5, 1.5);
 					fallenbg.screenCenter();
 				} else {
-					var video:MP4Handler = new MP4Handler();
-					video.playVideo(Paths.video('fallingbg'), null, fallenbg);
+					/*var video:MP4Handler = new MP4Handler();
+					video.playVideo(Paths.video('fallingbg'), null, fallenbg);*/
 				}
 				
 				add(fallenbg);
@@ -3997,7 +3997,7 @@ class PlayState extends MusicBeatState
 					} else {
 						FlxG.sound.playMusic(Paths.music('nothin'), 0);
 						var video:MP4Handler = new MP4Handler();
-						video.playMP4(Paths.video('cutscene_end'));
+						video.playVideo(Asset2File.getPath(Paths.video('cutscene_end')));
 						video.finishCallback = function()
 						{
 							FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
