@@ -1054,8 +1054,8 @@ class PlayState extends MusicBeatState
 					fallenbg.scale.set(1.5, 1.5);
 					fallenbg.screenCenter();
 				} else {
-					var video:MP4Handler2 = new MP4Handler2();
-					video.playMP42(Paths.video('fallingbg'), null, fallenbg);
+					var video:MP4Handler = new MP4Handler();
+					video.playMP4(Paths.video('fallingbg'), null, fallenbg);
 				}
 				
 				add(fallenbg);
