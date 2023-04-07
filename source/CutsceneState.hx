@@ -1,6 +1,14 @@
 import flixel.FlxG;
 import flixel.FlxSprite;
-
+#if VIDEOS_ALLOWED
+#if (hxCodec >= "2.6.1") 
+import hxcodec.VideoHandler as MP4Handler;
+#elseif (hxCodec == "2.6.0") 
+import VideoHandler as MP4Handler;
+#else 
+import vlc.MP4Handler;
+#end
+#end
 class CutsceneState extends MusicBeatState
 {
 	public var handler:MP4Handler;
