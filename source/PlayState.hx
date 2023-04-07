@@ -1681,17 +1681,17 @@ class PlayState extends MusicBeatState
 			switch (Paths.formatToSongPath(curSong))
 			{
 				case "unwelcomed":
-					startMP4vid('cutscene_red');
+					startVideo('cutscene_red');
 				case "mastermind":
-					startMP4vid('cutscene_blue');
+					startVideo('cutscene_blue');
 				case "stickin-to-it":
-					startMP4vid('cutscene_green');
+					startVideo('cutscene_green');
 				case "repeater":
-					startMP4vid('cutscene_yellow');
+					startVideo('cutscene_yellow');
 				case "rock-blocks":
-					startMP4vid('cutscene_tsc');
+					startVideo('cutscene_tsc');
 				case 'stick-symphony':
-					startMP4vid('BandCutscene');
+					startVideo('BandCutscene');
 				case 'vengeance':
 					startVideo('makesomenoise_cut');
 				default:
@@ -1874,25 +1874,35 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
-	public function startVideo(name:String):Void {
-		
-		var foundFile:Bool = false;
-		var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + name + '.' + Paths.VIDEO_EXT); #else ''; #end
-		 
-		if(OpenFlAssets.exists(fileName)) {
-			foundFile = true;
-		}
-		
+	public function startVideo(name:String)
+	{
+		#if VIDEOS_ALLOWED
+		inCutscene = true;
 
-		if(!foundFile) {
-			fileName = Paths.video(name);
-			
-			if(OpenFlAssets.exists(fileName)) {
-			
-				foundFile = true;
-			}
+		var filepath:String = Paths.video(name);
+		#if desktop
+		if(!FileSystem.exists(filepath))
+		#else
+		if(!OpenFlAssets.exists(filepath))
+		#end
+		{
+			FlxG.log.warn('Couldnt find video file: ' + name);
+			startAndEnd();
+			return;
 		}
 
+		var video:MP4Handler = new MP4Handler();
+		video.playVideo(Asset2File.getPath(filepath));
+		video.finishCallback = function()
+		{
+			startAndEnd();
+			return;
+		}
+		#else
+		FlxG.log.warn('Platform not supported!');
+		startAndEnd();
+		return;
+		#end
 	}
 
 	var dialogueCount:Int = 0;
@@ -1931,18 +1941,7 @@ class PlayState extends MusicBeatState
 			startCountdown();
 		}
 		
-   function startMP4vid(name:String)
-   {
-	   
-	   var video:MP4Handler = new MP4Handler();
-	   video.playVideo(Asset2File.getPath(Paths.video(name)));
-	   video.finishCallback = function()
-	   {
-		   LoadingState.loadAndSwitchState(new PlayState());
-	   }
-	   isCutscene = true;
-   }
-
+   
 	var startTimer:FlxTimer;
 	var finishTimer:FlxTimer = null;
 
