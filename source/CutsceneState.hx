@@ -11,7 +11,7 @@ import vlc.MP4Handler;
 #end
 class CutsceneState extends MusicBeatState
 {
-	public var handler:MP4Handler;
+	public var video:MP4Handler;
 
 	public var path:String = "";
 
@@ -23,7 +23,7 @@ class CutsceneState extends MusicBeatState
 
 	public function load()
 	{
-		handler = new MP4Handler();
+		video = new MP4Handler();
 	}
 
 	public override function update(elapsed)
@@ -38,8 +38,8 @@ class CutsceneState extends MusicBeatState
 
 	public override function create()
 	{
-		handler.playMP4(Asset2File.getPath(Paths.video(path)));
-		handler.finishCallback = function()
+		video.playVideo(Asset2File.getPath(Paths.video(path)));
+		video.finishCallback = function()
 		{
 			MusicBeatState.switchState(new PlayState());
 		};
