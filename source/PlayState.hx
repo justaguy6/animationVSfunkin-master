@@ -1941,7 +1941,19 @@ class PlayState extends MusicBeatState
 			startCountdown();
 		}
 		
-   
+   function startMP4vid(name:String)
+   {
+	   
+	   var video:MP4Handler = new MP4Handler();
+	   video.playVideo(Asset2File.getPath(Paths.video(name)));
+	   video.finishCallback = function()
+	   {
+		   LoadingState.loadAndSwitchState(new PlayState());
+	   }
+	   isCutscene = true;
+   }
+
+
 	var startTimer:FlxTimer;
 	var finishTimer:FlxTimer = null;
 
