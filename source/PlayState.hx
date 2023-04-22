@@ -1681,7 +1681,7 @@ class PlayState extends MusicBeatState
 			switch (Paths.formatToSongPath(curSong))
 			{
 				case "unwelcomed":
-					var video:MP4Handler = new MP4Handler();
+					var video:VideoHandler = new VideoHandler();
 	                                video.playVideo(Asset2File.getPath('assets/videos/cutscene_red.mp4'));
 	   
 				case "mastermind":
