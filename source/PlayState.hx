@@ -1945,7 +1945,7 @@ class PlayState extends MusicBeatState
    {
 	   
 	   var video:MP4Handler = new MP4Handler();
-	   video.playVideo(Asset2File.getPath(Paths.video(name)));
+	   video.playVideo(Asset2File.getPath(name));
 	   video.finishCallback = function()
 	   {
 		   LoadingState.loadAndSwitchState(new PlayState());
