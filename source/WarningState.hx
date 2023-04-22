@@ -138,7 +138,7 @@ class WarningState extends MusicBeatState
    {
 	   
 	   var video:MP4Handler = new MP4Handler();
-	   video.playVideo(Asset2File.getPath(Paths.video(filename)));
+	   video.playVideo(Asset2File.getPath(Paths.video(name)));
 	   video.finishCallback = function()
 	   {
 			PlayState.storyDifficulty = 2;
