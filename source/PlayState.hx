@@ -1681,7 +1681,7 @@ class PlayState extends MusicBeatState
 			switch (Paths.formatToSongPath(curSong))
 			{
 				case "unwelcomed":
-					startMP4Vid('cutscene_red');
+					startMP4vid('cutscene_red');
 				case "mastermind":
 					startVideo('cutscene_blue');
 				case "stickin-to-it":
@@ -1898,7 +1898,7 @@ class PlayState extends MusicBeatState
 			startAndEnd();
 			return;
 		}
-		#else
+		#elseif desktop 
 		FlxG.log.warn('Platform not supported!');
 		startAndEnd();
 		return;
