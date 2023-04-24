@@ -1681,11 +1681,10 @@ class PlayState extends MusicBeatState
 			switch (Paths.formatToSongPath(curSong))
 			{
 				case "unwelcomed":
-					var video:VideoHandler = new VideoHandler();
-	                                video.playVideo(Asset2File.getPath('assets/videos/cutscene_red.mp4'));
-	   
+					startMP4vid('assets/videos/cutscene_red.mp4');
+					
 				case "mastermind":
-					startVideo('cutscene_blue');
+					startMP4vid('assets/videos/cutscene_blue.mp4');
 				case "stickin-to-it":
 					startVideo('cutscene_green');
 				case "repeater":
@@ -1878,31 +1877,31 @@ class PlayState extends MusicBeatState
 
 	public function startVideo(name:String)
 	{
-		#if desktop 
+		#if sys 
 		inCutscene = true;
 
 		var filepath:String = Paths.video(name);
-		#if desktop
+		#if desktop 
 		if(!FileSystem.exists(filepath))
-		#else
+		#elseif android
 		if(!OpenFlAssets.exists(filepath))
 		#end
 		{
 			FlxG.log.warn('Couldnt find video file: ' + name);
-			startAndEnd();
+			
 			return;
 		}
 
-		var video:MP4Handler = new MP4Handler();
+		var video:VideoHandler = new VideoHandler();
 		video.playVideo(Asset2File.getPath(filepath));
 		video.finishCallback = function()
 		{
-			startAndEnd();
+			
 			return;
 		}
-		#elseif desktop 
+		#else
 		FlxG.log.warn('Platform not supported!');
-		startAndEnd();
+		
 		return;
 		#end
 	}
@@ -1946,8 +1945,8 @@ class PlayState extends MusicBeatState
    function startMP4vid(name:String)
    {
 	   
-	   var video:MP4Handler = new MP4Handler();
-	   video.playVideo(Asset2File.getPath(name));
+	   var video:VideoHandler = new VideoHandler();
+	   video.playVideo(Asset2File.getPath(Paths.video(name)));
 	   video.finishCallback = function()
 	   {
 		   LoadingState.loadAndSwitchState(new PlayState());
